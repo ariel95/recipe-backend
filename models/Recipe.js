@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
+const { object } = require('joi');
 
 const recipeSchema = new mongoose.Schema({
     cookingTimeInMinutes:{
         type: Number,
+        default: -1,
     },
     country: {
         type: String,
+        default: "",
     },
     description:{
         type: String,
@@ -16,17 +19,20 @@ const recipeSchema = new mongoose.Schema({
         default: Date.now
     },
     imageUrl:{
-        type: String
+        type: String,
+        default: "",
     },
     ingredients:{
-        type: [String]
+        type: [Object],
+        default: [],
     },
     name:{
         type: String,
         required: true,
     },
     numberOfServings:{
-        type: Number
+        type: Number,
+        default: -1,
     },
     uid:{
         type: String,
